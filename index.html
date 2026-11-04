@@ -35,8 +35,15 @@
             align-items: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .header-title h1 { margin: 0; font-size: 22px; }
-        .header-title p { margin: 3px 0 0 0; font-size: 13px; opacity: 0.9; }
+        .header-title h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+        .header-title p {
+            margin: 3px 0 0 0;
+            font-size: 13px;
+            opacity: 0.9;
+        }
         .vip-btn-top {
             background: #fff;
             color: var(--primary-orange);
@@ -49,7 +56,9 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             transition: 0.2s;
         }
-        .vip-btn-top:hover { background: var(--light-orange); }
+        .vip-btn-top:hover {
+            background: var(--light-orange);
+        }
         .supervisors-box {
             background: rgba(255, 255, 255, 0.15);
             padding: 8px 12px;
@@ -99,7 +108,9 @@
             box-shadow: 0 4px 12px rgba(255, 111, 32, 0.08);
             border: 1px solid var(--border-orange);
         }
-        .section.active { display: block; }
+        .section.active {
+            display: block;
+        }
         h2 {
             color: var(--primary-orange);
             border-bottom: 2px solid var(--light-orange);
@@ -124,7 +135,10 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(255,111,32,0.12);
         }
-        .card h4 { margin: 0 0 8px 0; color: #d35400; }
+        .card h4 {
+            margin: 0 0 8px 0;
+            color: #d35400;
+        }
         .video-btn {
             background: #e74c3c;
             color: white;
@@ -137,7 +151,9 @@
             width: 100%;
             font-weight: bold;
         }
-        .video-btn:hover { background: #c0392b; }
+        .video-btn:hover {
+            background: #c0392b;
+        }
         .delete-btn {
             position: absolute;
             top: 8px;
@@ -211,10 +227,6 @@
             color: #777;
         }
     </style>
-
-    <!-- مكتبة الفايربيس للربط السحابي العالمي -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 </head>
 <body>
 
@@ -244,6 +256,7 @@
 
     <div class="container">
 
+        <!-- 1. الرئيسية -->
         <div id="home" class="section active">
             <h2>مرحباً بكم في منصة التوعية المدرسية</h2>
             <p>تهدف هذه المنصة إلى نشر الوعي المجتمعي والصحي والأخلاقي لدى الطلاب من خلال حلقات توعوية متكاملة وأخبار حصرية.</p>
@@ -253,26 +266,39 @@
             </div>
         </div>
 
+        <!-- 2. أخبار مهمة -->
         <div id="news" class="section">
             <h2>📰 أخبار مهمة</h2>
-            <div id="news-container"><div class="empty-msg">جاري تحميل الأخبار...</div></div>
+            <div id="news-container">
+                <div class="empty-msg">لا توجد أخبار مضافة حالياً. استخدم حساب VIP للإضافة.</div>
+            </div>
         </div>
 
+        <!-- 3. التنمر -->
         <div id="bullying" class="section">
             <h2>🛑 سلسلة التنمر</h2>
-            <div class="grid-cards" id="bullying-list"><div class="empty-msg">جاري التحميل...</div></div>
+            <div class="grid-cards" id="bullying-list">
+                <div class="empty-msg">لم يتم إضافة حلقات بعد. قم بإضافة الحلقات عبر لوحة VIP.</div>
+            </div>
         </div>
 
+        <!-- 4. التدخين -->
         <div id="smoking" class="section">
             <h2>🚭 سلسلة التدخين وأضراره</h2>
-            <div class="grid-cards" id="smoking-list"><div class="empty-msg">جاري التحميل...</div></div>
+            <div class="grid-cards" id="smoking-list">
+                <div class="empty-msg">لم يتم إضافة حلقات بعد. قم بإضافة الحلقات عبر لوحة VIP.</div>
+            </div>
         </div>
 
+        <!-- 5. التحرش -->
         <div id="harassment" class="section">
             <h2>🛡️ سلسلة التحرش والتوعية ضد المخاطر</h2>
-            <div class="grid-cards" id="harassment-list"><div class="empty-msg">جاري التحميل...</div></div>
+            <div class="grid-cards" id="harassment-list">
+                <div class="empty-msg">لم يتم إضافة حلقات بعد. قم بإضافة الحلقات عبر لوحة VIP.</div>
+            </div>
         </div>
 
+        <!-- 6. حكايتنا -->
         <div id="about" class="section" style="text-align: center;">
             <h2>حكايتنا (من نحن)</h2>
             <p style="max-width: 800px; margin: 15px auto; line-height: 1.8; text-align: justify; font-size: 14px;">
@@ -292,6 +318,7 @@
 
     </div>
 
+    <!-- نافذة تشغيل الفيديو -->
     <div id="videoModal">
         <div class="video-modal-content">
             <h3 id="videoTitleModal" style="margin-top:0; color:#ffb088;">عنوان الحلقة</h3>
@@ -300,20 +327,23 @@
         </div>
     </div>
 
+    <!-- نافذة تسجيل الدخول للـ VIP -->
     <div id="vipModal">
         <div class="modal-content" style="text-align: center;">
             <h3>⭐ تسجيل دخول قائمة الـ VIP</h3>
             <p style="font-size: 12px; color: #666;">أدخل اسم المستخدم وكلمة المرور الخاصة بك</p>
-            <input type="text" id="vipUser" placeholder="اسم المستخدم" style="text-align:right;">
-            <input type="password" id="vipPass" placeholder="كلمة المرور" style="text-align:right;">
+            <input type="text" id="vipUser" placeholder="اسم المستخدم (Username)" style="text-align:right;">
+            <input type="password" id="vipPass" placeholder="كلمة المرور (Password)" style="text-align:right;">
             <button class="btn-main" onclick="verifyVipLogin()">دخول</button>
             <button onclick="closeVipModal()" style="background: #ccc; border:none; padding:6px; width:100%; margin-top:5px; border-radius:6px; cursor:pointer;">إلغاء</button>
         </div>
     </div>
 
+    <!-- لوحة التحكم للإشراف -->
     <div id="adminPanelModal">
         <div class="modal-content">
             <h3 style="color:var(--primary-orange); margin-top:0;">🛠️ لوحة تحكم المشرف VIP</h3>
+            
             <label>اختر القسم:</label>
             <select id="contentType">
                 <option value="news">خبر جديد</option>
@@ -321,27 +351,23 @@
                 <option value="smoking">حلقة في سلسلة التدخين</option>
                 <option value="harassment">حلقة في سلسلة التحرش</option>
             </select>
+
             <label>العنوان:</label>
             <input type="text" id="newTitleInput" placeholder="اكتب العنوان هنا...">
+
             <label>التفاصيل أو رابط يوتيوب:</label>
             <textarea id="newDescInput" rows="3" placeholder="اكتب الوصف أو الصق رابط يوتيوب..."></textarea>
-            <button class="btn-main" onclick="addNewContent()">إضافة ونشر في العالم +</button>
+
+            <button class="btn-main" onclick="addNewContent()">إضافة ونشر في الموقع +</button>
             <button onclick="closeAdminPanel()" style="background: #e74c3c; color:white; border:none; padding:6px; width:100%; margin-top:8px; border-radius:6px; cursor:pointer;">إغلاق اللوحة</button>
         </div>
     </div>
 
-    <footer>جميع الحقوق محفوظة لمدرسة الدكتور محمد حسن الزيات © 2026</footer>
+    <footer>
+        جميع الحقوق محفوظة لمدرسة الدكتور محمد حسن الزيات © 2026
+    </footer>
 
     <script>
-        // إعداد السيرفر السحابي (Firebase) للحفظ العالمي
-        const firebaseConfig = {
-            databaseURL: "https://anta-aham-default-rtdb.firebaseio.com/"
-        };
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-        const db = firebase.database();
-
         function switchTab(tabId) {
             document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
@@ -349,48 +375,44 @@
             event.target.classList.add('active');
         }
 
-        // التحديث التلقائي الفوري عبر الإنترنت لكل الأجهزة
-        db.ref().on('value', (snapshot) => {
-            const data = snapshot.val() || {};
-            renderNews(data.news || {});
-            renderCategory(data.bullying || {}, 'bullying-list', 'bullying');
-            renderCategory(data.smoking || {}, 'smoking-list', 'smoking');
-            renderCategory(data.harassment || {}, 'harassment-list', 'harassment');
-        });
+        let newsData = JSON.parse(localStorage.getItem('news_list')) || [];
+        let bullyingData = JSON.parse(localStorage.getItem('bullying_list')) || [];
+        let smokingData = JSON.parse(localStorage.getItem('smoking_list')) || [];
+        let harassmentData = JSON.parse(localStorage.getItem('harassment_list')) || [];
 
-        function renderNews(newsObj) {
-            const container = document.getElementById('news-container');
-            const keys = Object.keys(newsObj);
-            if (keys.length === 0) {
-                container.innerHTML = `<div class="empty-msg">لا توجد أخبار مضافة حالياً.</div>`;
-                return;
+        function renderLists() {
+            let newsContainer = document.getElementById('news-container');
+            if (newsData.length === 0) {
+                newsContainer.innerHTML = `<div class="empty-msg">لا توجد أخبار مضافة حالياً.</div>`;
+            } else {
+                newsContainer.innerHTML = "";
+                newsData.forEach((item, index) => {
+                    newsContainer.innerHTML += `
+                        <div class="card" style="border: 2px solid var(--primary-orange);">
+                            <button class="delete-btn" onclick="deleteItem('news', ${index})">حذف</button>
+                            <h4>${item.title}</h4>
+                            <p>${item.desc}</p>
+                        </div>
+                    `;
+                });
             }
-            container.innerHTML = "";
-            keys.forEach(key => {
-                const item = newsObj[key];
-                container.innerHTML += `
-                    <div class="card" style="border: 2px solid var(--primary-orange);">
-                        <button class="delete-btn" onclick="deleteItem('news', '${key}')">حذف</button>
-                        <h4>${item.title}</h4>
-                        <p>${item.desc}</p>
-                    </div>
-                `;
-            });
+
+            renderSeries(bullyingData, 'bullying-list', 'bullying');
+            renderSeries(smokingData, 'smoking-list', 'smoking');
+            renderSeries(harassmentData, 'harassment-list', 'harassment');
         }
 
-        function renderCategory(catObj, containerId, categoryKey) {
-            const container = document.getElementById(containerId);
-            const keys = Object.keys(catObj);
-            if (keys.length === 0) {
+        function renderSeries(data, containerId, categoryKey) {
+            let container = document.getElementById(containerId);
+            if (data.length === 0) {
                 container.innerHTML = `<div class="empty-msg">لم يتم إضافة حلقات بعد في هذا القسم.</div>`;
                 return;
             }
             container.innerHTML = "";
-            keys.forEach(key => {
-                const item = catObj[key];
+            data.forEach((item, index) => {
                 container.innerHTML += `
                     <div class="card">
-                        <button class="delete-btn" onclick="deleteItem('${categoryKey}', '${key}')">حذف</button>
+                        <button class="delete-btn" onclick="deleteItem('${categoryKey}', ${index})">حذف</button>
                         <h4>${item.title}</h4>
                         <p style="font-size: 11px; color: #666; margin:4px 0;">حلقة توعوية مضافة</p>
                         <button class="video-btn" onclick="openVideo('${item.title}', '${item.url}')">▶ تشغيل الفيديو الآن</button>
@@ -398,6 +420,8 @@
                 `;
             });
         }
+
+        renderLists();
 
         function getEmbedUrl(url) {
             if (!url) return "https://www.youtube.com/embed/3JZ_D3ELwOQ";
@@ -421,8 +445,12 @@
             document.getElementById('videoModal').style.display = 'none';
         }
 
-        function openVipModal() { document.getElementById('vipModal').style.display = 'flex'; }
-        function closeVipModal() { document.getElementById('vipModal').style.display = 'none'; }
+        function openVipModal() {
+            document.getElementById('vipModal').style.display = 'flex';
+        }
+        function closeVipModal() {
+            document.getElementById('vipModal').style.display = 'none';
+        }
 
         let vipUsers = [
             {user: "2016", pass: "0925", name: "المبرمج عدي ومروان"},
@@ -436,6 +464,7 @@
             let u = document.getElementById('vipUser').value;
             let p = document.getElementById('vipPass').value;
             let found = vipUsers.find(x => x.user === u && x.pass === p);
+            
             if (found) {
                 closeVipModal();
                 document.getElementById('adminPanelModal').style.display = 'flex';
@@ -445,9 +474,10 @@
             }
         }
 
-        function closeAdminPanel() { document.getElementById('adminPanelModal').style.display = 'none'; }
+        function closeAdminPanel() {
+            document.getElementById('adminPanelModal').style.display = 'none';
+        }
 
-        // الإضافة المباشرة على السيرفر السحابي
         function addNewContent() {
             let type = document.getElementById('contentType').value;
             let title = document.getElementById('newTitleInput').value;
@@ -459,21 +489,47 @@
             }
 
             if (type === 'news') {
-                db.ref('news').push({title: title, desc: descOrUrl});
+                newsData.push({title: title, desc: descOrUrl});
+                localStorage.setItem('news_list', JSON.stringify(newsData));
+                alert("تم نشر الخبر بنجاح!");
             } else {
-                db.ref(type).push({title: title, url: descOrUrl});
+                let newItem = {title: title, url: descOrUrl};
+                if (type === 'bullying') {
+                    bullyingData.push(newItem);
+                    localStorage.setItem('bullying_list', JSON.stringify(bullyingData));
+                } else if (type === 'smoking') {
+                    smokingData.push(newItem);
+                    localStorage.setItem('smoking_list', JSON.stringify(smokingData));
+                } else if (type === 'harassment') {
+                    harassmentData.push(newItem);
+                    localStorage.setItem('harassment_list', JSON.stringify(harassmentData));
+                }
+                alert("تم إضافة الحلقة بنجاح!");
             }
 
-            alert("تم نشر المحتوى بنجاح على كل الأجهزة في العالم!");
+            renderLists();
             closeAdminPanel();
             document.getElementById('newTitleInput').value = '';
             document.getElementById('newDescInput').value = '';
         }
 
-        // الحذف المباشر من السيرفر السحابي
-        function deleteItem(category, key) {
-            if (confirm("هل أنت متأكد من الحذف؟ سيتم حذفه من جميع الأجهزة.")) {
-                db.ref(category + '/' + key).remove();
+        function deleteItem(category, index) {
+            if (confirm("هل أنت متأكد من الحذف؟")) {
+                if (category === 'news') {
+                    newsData.splice(index, 1);
+                    localStorage.setItem('news_list', JSON.stringify(newsData));
+                } else if (category === 'bullying') {
+                    bullyingData.splice(index, 1);
+                    localStorage.setItem('bullying_list', JSON.stringify(bullyingData));
+                } else if (category === 'smoking') {
+                    smokingData.splice(index, 1);
+                    localStorage.setItem('smoking_list', JSON.stringify(smokingData));
+                } else if (category === 'harassment') {
+                    harassmentData.splice(index, 1);
+                    localStorage.setItem('harassment_list', JSON.stringify(harassmentData));
+                }
+                renderLists();
+                alert("تم الحذف بنجاح!");
             }
         }
     </script>
